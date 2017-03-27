@@ -4,33 +4,101 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>iphone</string>
+		<string>cookies</string>
 		<key>cost</key>
-		<integer>500</integer>
+		<integer>15</integer>
 		<key>availableNumber</key>
-		<integer>1</integer>
-		<key>manufacturer</key>
-		<string>USA</string>
+		<integer>10</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<false/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:16Z</date>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>Макбук</string>
+		<string>chocolate</string>
 		<key>cost</key>
-		<integer>1500</integer>
+		<integer>50</integer>
 		<key>availableNumber</key>
-		<integer>1</integer>
-		<key>manufacturer</key>
-		<string>USA</string>
+		<integer>10</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<true/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:14Z</date>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>Куртка</string>
+		<string>candies</string>
 		<key>cost</key>
-		<real>400.5</real>
+		<integer>20</integer>
+		<key>availableNumber</key>
+		<integer>30</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<true/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:11Z</date>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>pies</string>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>availableNumber</key>
+		<integer>100</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<true/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:08Z</date>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>brownies</string>
+		<key>cost</key>
+		<integer>25</integer>
 		<key>availableNumber</key>
 		<integer>25</integer>
-		<key>manufacturer</key>
-		<string>Turkey</string>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<false/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:00:11Z</date>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>coffee Arabika</string>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>availableNumber</key>
+		<integer>150</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<false/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:23Z</date>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>jujubes</string>
+		<key>cost</key>
+		<integer>100</integer>
+		<key>availableNumber</key>
+		<integer>50</integer>
+		<key>manufacture</key>
+		<string>France</string>
+		<key>hasDiscount</key>
+		<false/>
+		<key>DateOfManufacture</key>
+		<date>2017-03-14T17:01:20Z</date>
 	</dict>
 </array>
 </plist>

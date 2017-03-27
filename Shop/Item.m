@@ -17,7 +17,7 @@
         _title = dictionary[@"title"];
         _cost = dictionary[@"cost"];
         _availableNumber = dictionary[@"availableNumber"];
-        _manufacturer = dictionary[@"manufacturer"];
+        _manufacturer = dictionary[@"manufacture"];
         _hasDiscount = [dictionary[@"hasDiscount"] boolValue];
         _dateOfManufacture = dictionary[@"DateOfManufacture"];
     }

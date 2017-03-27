@@ -7,15 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "Item.h"
 
 @interface ViewController ()
 // объявляем свойство класса для хранения информации о наших товарах
 @property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @property (nonatomic, strong) NSArray *shop;
 @end
-
-
-#define PRICE(cost, percent) cost * percent/100.0f
 
 @implementation ViewController
 
@@ -51,32 +49,17 @@
     NSMutableArray *textRepresentation = [NSMutableArray array];
     
     for (NSDictionary *item in self.shop) {
-        
-        NSString *title = [item objectForKey:@"title"];
-        NSNumber *cost = [item objectForKey:@"cost"];
-        NSNumber *availableNumber = [item objectForKey:@"availableNumber"];
-        NSString *manufacturer = [item objectForKey:@"manufacturer"];
-        
-        BOOL hasDiscount = [[item objectForKey:@"manufacturer"] boolValue];
-        
-        if (hasDiscount) {
-            CGFloat discount = PRICE(cost.floatValue, 50);
-            NSNumber *res = [NSNumber numberWithFloat:discount];
-            
-            // вот таким образом у нас будет представлен товар
-            NSString *result = [NSString stringWithFormat:@"Title - %@, cost - %@, available number - %@, manufacturer - %@, cost with discount - %@", title, cost, availableNumber, manufacturer, res];
-            
-            [textRepresentation addObject:result];
+        Item *itemObj = [[Item alloc] initWithDictionary:item];
 
+        if (itemObj) {
+            [textRepresentation addObject:[itemObj itemDescription]];
         }
-        
     }
     
     // далее формируем результирующую строку
     NSString *resultString = [textRepresentation componentsJoinedByString:@"\n"];
     
     // выведем получившийся результат визуально
-    
     self.resultLabel.text = resultString;
 }
 
