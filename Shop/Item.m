@@ -20,6 +20,7 @@
         _manufacturer = dictionary[@"manufacture"];
         _hasDiscount = [dictionary[@"hasDiscount"] boolValue];
         _dateOfManufacture = dictionary[@"DateOfManufacture"];
+        _imageName = dictionary[@"imageName"];
     }
     
     return self;
@@ -39,7 +40,21 @@
             _availableNumber,
             _manufacturer,
             (_hasDiscount == 1 ? "yes" : "no"),
-            [[self dateFormatter] stringFromDate:_dateOfManufacture],
+            @"1993",
             PRICE([_cost intValue], 30)];
 }
+
++ (Item*)defaultItem {
+    Item *item = [Item new];
+    item.title = @"Test";
+    item.cost = [NSNumber numberWithInt:12];
+    item.availableNumber = [NSNumber numberWithInt:5];
+    item.manufacturer = @"China";
+    item.hasDiscount = YES;
+    item.dateOfManufacture = [NSDate date];
+    item.imageName = nil;
+    
+    return item;
+}
+
 @end

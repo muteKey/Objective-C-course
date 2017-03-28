@@ -14,6 +14,7 @@
 // Добавим реализацию протокола UITableViewDatasource в наш класс
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *toggleEditButton;
 // добавим аутлет нашей таблицы
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -110,6 +111,16 @@
     // получим товар
     Item *item = [self.items objectAtIndex:indexPath.row];
     
+    cell.imageView.image = [UIImage imageNamed:item.imageName];
+    
+    if (item.hasDiscount) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+
+    if (indexPath.row % 2 == 0) {
+        cell.backgroundColor = [UIColor grayColor];
+    }
+    
     cell.textLabel.text = item.title;
     cell.detailTextLabel.text = [item itemDescription];
     
@@ -119,6 +130,10 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
 // далее добавим реагирование на нажатие ячейки - этим занимается протокол UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // получаем выбранную ячейку
@@ -126,5 +141,55 @@
     
     cell.accessoryType = (cell.accessoryType == UITableViewCellAccessoryCheckmark) ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
 }
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Товары";
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Item *item = [self.items objectAtIndex:indexPath.row];
+    if (item.hasDiscount) {
+        return UITableViewCellEditingStyleInsert;
+    }
+    
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.items removeObjectAtIndex:indexPath.row];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+//        [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        Item *item = [Item defaultItem];
+        [self.items insertObject:item atIndex:indexPath.row];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+//        [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationMiddle];
+    }
+    
+    [tableView reloadData];
+}
+
+#pragma mark - UI actions -
+
+- (IBAction)toggleButtonTapped:(UIButton *)sender {
+    if (self.tableView.isEditing) {
+        [self.tableView setEditing:NO animated:YES];
+        self.toggleEditButton.titleLabel.text = @"";
+        [self.toggleEditButton setTitle:@"Edit" forState:UIControlStateNormal];
+        
+    } else {
+        [self.tableView setEditing:YES animated:YES];
+        [self.toggleEditButton setTitle:@"Stop editing" forState:UIControlStateNormal];
+    }
+    
+    
+}
+
 
 @end

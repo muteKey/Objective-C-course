@@ -16,9 +16,12 @@
 @property (nonatomic, strong) NSString *manufacturer;
 @property (nonatomic, assign) BOOL hasDiscount;
 @property (nonatomic, assign) NSDate *dateOfManufacture;
+@property (nonatomic, strong) NSString *imageName;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
 - (NSString *)itemDescription;
+
++ (Item*)defaultItem;
 
 @end
